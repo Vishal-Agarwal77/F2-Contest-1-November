@@ -98,6 +98,7 @@ const data = [
         }
     })
     console.log("The Information have been sorted successfully");
+    console.log(data);
   }
   
   // 9. Update Profession
@@ -108,6 +109,7 @@ const data = [
         }
     }
     console.log("John's profession has been changed to manager");
+    console.log(data);
   }
   
   // 10. Profession Count
