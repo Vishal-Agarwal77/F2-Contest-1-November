@@ -7,7 +7,7 @@ const data = [
   function printDeveloper() {
     for(key in data){
         if(data[key].profession=="developer"){
-            console.log(data[key].name);
+            console.log(data[key]);
         }
     }
   }
@@ -17,6 +17,10 @@ const data = [
     let name=prompt("Enter name:");
     let age=Number(prompt("Enter age:"));
     let profession=prompt("Enter profession:");
+    if(!name || isNaN(age) || !profession){
+        alert("Invalid input. Please enter valid details.")
+        return ;
+    }
     function makeuser(name,age,profession){
         return {
             name,
@@ -26,6 +30,7 @@ const data = [
     }
     let newuser=makeuser(name,age,profession);
     data.push(newuser);
+    console.log("New user Successfully added");
   }
   
   // 3. Remove Admins
@@ -35,6 +40,7 @@ const data = [
             data.splice(key,1);
         }
     }
+    console.log("Admins have been removed successfully");
   }
   
   // 4. Concatenate Array
@@ -54,7 +60,7 @@ const data = [
     for(key in data){
         totalage+=data[key].age;
     }
-    console.log(totalage/data.length);
+    console.log("Average age = "+totalage/data.length);
   }
   
   // 6. Age Check
@@ -91,30 +97,24 @@ const data = [
             return 0;
         }
     })
+    console.log("The Information have been sorted successfully");
   }
   
   // 9. Update Profession
   function updateJohnsProfession() {
     for(key in data){
-        if(data[key].name=="john"){
+        if(data[key].name==="john"){
             data[key].profession="manager";
-            return ;
         }
     }
+    console.log("John's profession has been changed to manager");
   }
   
   // 10. Profession Count
   function getTotalProfessions() {
-    let dev_count=0;
-    let admin_count=0;
-    for(key in data){
-        if(data[key].profession==="admin"){
-            admin_count++;
-        }
-        else if(data[key].profession==="developer"){
-            dev_count++;
-        }
-    }
-    console.log("Admin : "+admin_count);
-    console.log("Developer : "+dev_count);
+    const profession_count=data.reduce((count,key)=>{
+        count[key.profession]=(count[key.profession] || 0)+1;
+        return count;
+    },{});
+    console.log(profession_count);
   }
